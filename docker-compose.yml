@@ -89,6 +89,23 @@ services:
       - CONFIG_INTERNAL_API_PASSWORD=password
       - RACK_ENV=production
 
+  apisonator-worker:
+    image: quay.io/3scale/apisonator:latest
+    container_name: apisonator-compose
+    ports:
+      - "3001:3001"
+    command: "3scale_backend_worker start -t"
+    depends_on:
+      - redis
+      - apisonator
+    environment:
+      - CONFIG_REDIS_PROXY=redis:6379/3
+      - CONFIG_QUEUES_MASTER_NAME=redis:6379/3
+      - CONFIG_WORKERS_LOG_FILE=/dev/stdout
+      - CONFIG_INTERNAL_API_USER=system_app
+      - CONFIG_INTERNAL_API_PASSWORD=password
+      - RACK_ENV=production
+
   redis:
     image: redis:alpine
     container_name: redis-compose
