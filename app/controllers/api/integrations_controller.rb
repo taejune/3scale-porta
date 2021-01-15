@@ -23,17 +23,21 @@ class Api::IntegrationsController < Api::BaseController
   def settings; end
 
   def update
+    puts "*** [Api::IntegrationsController]: try to update..."
     @show_presenter = Api::IntegrationsShowPresenter.new(@proxy)
 
     if @service.using_proxy_pro? && !@proxy.apicast_configuration_driven
+      puts "*** [Api::IntegrationsController]: deploying proxy pro success"
       proxy_pro_update
     elsif @proxy.save_and_deploy(proxy_params)
+      puts "*** [Api::IntegrationsController]: deploying proxy success"
       environment = @proxy.service_mesh_integration? ? 'Production' : 'Staging'
       flash[:notice] = flash_message(:update_success, environment: environment)
       update_mapping_rules_position
 
       redirect_to admin_service_integration_path(@service)
     else
+      puts "*** [Api::IntegrationsController]: deploying proxy failed"
       attrs = proxy_rules_attributes
       splitted = attrs.keys.group_by { |key| attrs[key]['_destroy'] == '1' }
 

@@ -5,7 +5,7 @@ base: &default
   ignore_test_failures: []
   hosts:
     - localhost:8091
-  backend_host: backend:3000
+  backend_host: backend:3001
   shared_secret: dev
   backend_scheme: http
   nginx_port: 8080

@@ -368,6 +368,7 @@ class Proxy < ApplicationRecord
     return false unless saved
 
     success = ProxyDeploymentService.call(self, v1_compatible: true)
+    puts "*** [Proxy]: ProxyDeploymentService call #{success}"
     analytics.track('Sandbox Proxy Deploy', success: success)
     success
   end
