@@ -10,6 +10,7 @@ ENV DISABLE_SPRING="true" \
     USER_PASSWORD="p" \
     LC_ALL="en_US.UTF-8" \
     PATH="./node_modules/.bin:/opt/rh/rh-nodejs10/root/usr/bin:$PATH" \
+    NODEJS_SCL="rh-nodejs10" \
     DNSMASQ="#" \
     BUNDLE_FROZEN=1 \
     BUNDLE_JOBS=5 \

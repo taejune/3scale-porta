@@ -91,9 +91,7 @@ services:
 
   apisonator-worker:
     image: quay.io/3scale/apisonator:latest
-    container_name: apisonator-compose
-    ports:
-      - "3001:3001"
+    container_name: apisonator-worker-compose
     command: "3scale_backend_worker start -t"
     depends_on:
       - redis

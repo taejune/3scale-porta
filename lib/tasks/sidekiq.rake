@@ -14,7 +14,7 @@ namespace :sidekiq do
   desc 'start sidekiq worker'
   task :worker do
     envs = {}
-    envs['RAILS_MAX_THREADS'] = ENV.fetch('RAILS_MAX_THREADS', '1')
+    envs['RAILS_MAX_THREADS'] = ENV.fetch('RAILS_MAX_THREADS', '2')
 
     args = []
     args.push(['--index', ENV.fetch('INDEX', '0')])
