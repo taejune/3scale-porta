@@ -30,5 +30,8 @@ RUN if [ "X${DB}" = "Xoracle" ]; then ./script/oracle/install-instantclient-pack
 # Needed to disable webpack compiling
 RUN sed -i 's/compile: true/compile: false/' config/webpacker.yml
 
+RUN bash -c "env | grep ruby"
 RUN bash -c "bundle install && bundle exec rake tmp:create"
+RUN bash -c "env | grep ruby"
 RUN bash -c "npm install -g yarn && yarn install:safe && rake assets:precompile"
+RUN bash -c "env | grep ruby"
